@@ -9,7 +9,7 @@ Source0:	http://requiescant.tuxfamily.org/tofu/%{name}-%{version}.tar.gz
 # Source0-md5:	18dbd1854411f929ea6eb53dceaaab52
 URL:		http://requiescant.tuxfamily.org/tofu/index.html
 BuildRequires:	perl
-Requires:	perl
+BuildRequires:	sed >= 4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -22,6 +22,7 @@ kezeléséhez.
 
 %prep
 %setup -q
+%{__sed} -i "1s@.*@#!%{__perl}@" tofu
 
 %build
 
@@ -38,7 +39,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/tofu
-%{_mandir}/man1/tofu.1*
 %doc README CHANGELOG PLAY playground.pl
 %doc %{_examplesdir}/%{name}
+%attr(755,root,root) %{_bindir}/tofu
+%{_mandir}/man1/tofu.1*
