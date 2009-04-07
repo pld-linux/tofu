@@ -22,16 +22,15 @@ kezeléséhez.
 
 %prep
 %setup -q
-%{__sed} -i "1s@.*@#!%{__perl}@" tofu
+%{__sed} -i -e '1s,^#!.*perl,#!%{__perl},' tofu
 
 %build
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_bindir}
-install -d $RPM_BUILD_ROOT%{_mandir}/man1
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1}
 install tofu $RPM_BUILD_ROOT%{_bindir}
-install share/tofu.1 $RPM_BUILD_ROOT%{_mandir}/man1
+cp -a share/tofu.1 $RPM_BUILD_ROOT%{_mandir}/man1
 %{__perl} playground.pl -root=$RPM_BUILD_ROOT%{_examplesdir}/%{name} playground
 
 %clean
@@ -40,6 +39,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README CHANGELOG PLAY playground.pl
-%doc %{_examplesdir}/%{name}
 %attr(755,root,root) %{_bindir}/tofu
 %{_mandir}/man1/tofu.1*
+%{_examplesdir}/%{name}
