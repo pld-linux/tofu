@@ -8,7 +8,7 @@ Group:		Development/Tools
 Source0:	http://requiescant.tuxfamily.org/tofu/%{name}-%{version}.tar.gz
 # Source0-md5:	18dbd1854411f929ea6eb53dceaaab52
 URL:		http://requiescant.tuxfamily.org/tofu/index.html
-BuildRequires:	perl
+BuildRequires:	perl-base
 BuildRequires:	sed >= 4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
