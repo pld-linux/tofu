@@ -11,6 +11,7 @@ URL:		http://requiescant.tuxfamily.org/tofu/index.html
 BuildRequires:	perl-base
 BuildRequires:	sed >= 4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+BuildArch:	noarch
 
 %description
 Tofu provides an easy, very lightweight, and effiscient way to manage
