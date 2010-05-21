@@ -1,3 +1,4 @@
+%include        /usr/lib/rpm/macros.perl
 Summary:	Tofu provides an easy, very lightweight, and effiscient way to manage your todo list(s)
 Summary(hu.UTF-8):	Tofu egy könnyű, nagyon gyors utat biztosít a teendőid listáinak kezeléséhez
 Name:		tofu
@@ -8,8 +9,9 @@ Group:		Development/Tools
 Source0:	http://requiescant.tuxfamily.org/tofu/%{name}-%{version}.tar.gz
 # Source0-md5:	8c6f71c31a269cf75c6fc8f483ff79c0
 URL:		http://requiescant.tuxfamily.org/tofu/index.html
+BuildRequires:	perl-base
+BuildRequires:	rpm-perlprov
 BuildRequires:	sed >= 4.0
-BuildRequires:	which
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -23,22 +25,27 @@ kezeléséhez.
 
 %prep
 %setup -q
-%{__sed} -i -e '1s,^#!.*perl,#!%{__perl},' tofu
+%{__sed} -i -e '1s,^#!.*perl,#!%{__perl},' tofu tofuup
 
 %build
-./configure --prefix=%{_prefix} --mandir=%{_mandir} --docdir=%{_docdir}/%{name}-%{version}
+./configure \
+	--perl=%{__perl} \
+	--prefix=%{_prefix} \
+	--mandir=%{_mandir}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} DESTDIR=$RPM_BUILD_ROOT
+%{__make} \
+	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/tofu*
-%doc %{_docdir}/%{name}-%{version}
+%doc CHANGELOG README
+%attr(755,root,root) %{_bindir}/tofu
+%attr(755,root,root) %{_bindir}/tofuup
 %{_mandir}/man1/*.1*
 %{_mandir}/man7/*.7*
