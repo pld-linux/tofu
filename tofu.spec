@@ -8,10 +8,10 @@ Group:		Development/Tools
 Source0:	http://requiescant.tuxfamily.org/tofu/%{name}-%{version}.tar.gz
 # Source0-md5:	8c6f71c31a269cf75c6fc8f483ff79c0
 URL:		http://requiescant.tuxfamily.org/tofu/index.html
-BuildRequires:	perl-base
 BuildRequires:	sed >= 4.0
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+BuildRequires:	which
 BuildArch:	noarch
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Tofu provides an easy, very lightweight, and effiscient way to manage
