@@ -2,12 +2,12 @@
 Summary:	Tofu provides an easy, very lightweight, and effiscient way to manage your todo list(s)
 Summary(hu.UTF-8):	Tofu egy könnyű, nagyon gyors utat biztosít a teendőid listáinak kezeléséhez
 Name:		tofu
-Version:	3.1
+Version:	3.2
 Release:	0.1
 License:	MIT/X11
 Group:		Development/Tools
-Source0:	http://requiescant.tuxfamily.org/tofu/%{name}-%{version}.tar.gz
-# Source0-md5:	437b18c7a5c21da18c7d09e9ab708134
+Source0:	http://requiescant.tuxfamily.org/files/%{name}-%{version}.tar.gz
+# Source0-md5:	3e07d1f3d4ac166d813d927599b310e9
 URL:		http://requiescant.tuxfamily.org/tofu/index.html
 BuildRequires:	perl-base
 BuildRequires:	rpm-perlprov
